@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Student Management System</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<div class ="container">
+    <div class = "row">
+        <h1> List Student's Subjects </h1>
+    </div>
+
+    <div class = "row">
+        <div class = "col-lg-3">
+            <a th:href = "@{'/students/{id}/subjects/new'(id=${student.id})}" class = "btn btn-primary btn-sm mb-3"> Add Subject</a>
+        </div>
+    </div>
+    <table class = "table table-striped table-bordered">
+        <thead class = "table-dark">
+        <tr>
+            <th> Subject</th>
+            <th> Grade</th>
+            <th> Actions </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each = "subject: ${student.subjects}">
+            <td th:text = "${subject.subject.name}"></td>
+            <td th:text = "${subject.grade}"></td>
+            <td>
+                <a th:href = "@{'/students/{id}/subjects/{subjectId}'(id=${student.id}, subjectId=${subject.subject.id})}"
+                   class = "btn btn-danger">Delete</a>
+
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+</body>
+</html>
